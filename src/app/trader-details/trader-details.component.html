@@ -1,0 +1,68 @@
+<div class="row">
+  <div class="col-md-4">
+    <h1>{{trader.getName()}}</h1>
+    <h2>Unreleased Pnl: {{trader.getUnreleasedPnL()}}</h2>
+    <h2>Released Pnl  : {{trader.getReleasedPnL()}}</h2>
+    <h2>Total Pnl     : {{trader.getTotalPnL()}}</h2>
+  </div>
+  <div class="col-md-4">
+
+  </div>
+  <div class="col-md-4">
+
+  </div>
+  <br><br>
+</div>
+<div class="row">
+  <div class="col-md-8">
+    <div class="panel panel-warning">
+      <div class="panel-heading"><h2>Open Positions</h2></div>
+      <table class="table table-stripped">
+        <tr>
+          <th>#</th>
+          <th>Symbol</th>
+          <th>Mark</th>
+          <th>Count</th>
+          <th>Unreleased PnL</th>
+          <th></th>
+        </tr>
+        <tr *ngFor="let trade of trader.getOpenTrades(); let i = index;">
+          <th>{{i}}</th>
+          <th>{{trade.getStockInfo()}}</th>
+          <th>{{trade.getMark()}}</th>
+          <th>{{trade.getCount()}}</th>
+          <th>{{trade.getUnreleasedPnL()}}</th>
+          <th><button class="btn btn-default" onclick="closeTrade(trade)">Close</button></th>
+        </tr>
+      </table>
+    </div>
+    <div class="panel panel-warning">
+      <div class="panel-heading"><h2>Closed Positions</h2></div>
+      <table class="table table-stripped">
+        <tr>
+          <th>#</th>
+          <th>Symbol</th>
+          <th>Mark</th>
+          <th>Close Price</th>
+          <th>Count</th>
+          <th>Released PnL</th>
+        </tr>
+        <tr *ngFor="let trade of trader.getClosedTrades(); let i = index;">
+          <th>{{i}}</th>
+          <th>{{trade.getStockInfo()}}</th>
+          <th>{{trade.getMark()}}</th>
+          <th>{{trade.getClosePrice()}}</th>
+          <th>{{trade.getCount()}}</th>
+          <th>{{trade.getReleasedPnL()}}</th>
+        </tr>
+      </table>
+    </div>
+    <div class="col-md-4">
+       <div>
+
+       </div>
+    </div>
+
+  </div>
+</div>
+

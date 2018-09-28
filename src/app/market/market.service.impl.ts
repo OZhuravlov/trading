@@ -58,6 +58,7 @@ export class MarketServiceImpl implements MarketService {
   buyStock(symbol: string, count: number): Trade {
 
     let stock: Stock = this.getStock(symbol);
+    console.log(this.stocks);
     if (stock) {
       return new Trade(stock, count, stock.getPrice());
     }
@@ -66,6 +67,7 @@ export class MarketServiceImpl implements MarketService {
   }
 
   private getStock(symbol: string): Stock {
+    console.log(symbol);
     return this.stocks.find(stock => stock.getSymbol() === symbol);
   }
 

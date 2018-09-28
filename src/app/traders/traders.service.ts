@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import {Trader} from '../../domain/trader';
 import {Observable, of} from 'rxjs';
 import {Trade} from '../../domain/trade';
-import {MarketService} from '../market/market.service';
 import {MarketServiceImpl} from '../market/market.service.impl';
+import {Stock} from '../../domain/stock';
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +11,11 @@ import {MarketServiceImpl} from '../market/market.service.impl';
 export class TradersService {
 
   traders: Trader[];
+  stocks: Stock[];
 
   constructor( private marketService: MarketServiceImpl ) {
     this.traders = this.getMockTraders();
+    this.updateStocks();
   }
 
   getTrader(name: string): Observable<Trader> {
@@ -43,5 +45,17 @@ export class TradersService {
     let trade: Trade = this.marketService.buyStock(symbol, count);
     console.log("buyStock" + trade);
     return this.marketService.buyStock(symbol, count);
+  }
+
+
+  getFilteredStocks(symbol: string): Stock[]{
+    const filterValue = symbol.toUpperCase();
+    console.log(filterValue);
+    return this.stocks.filter(stock => stock.getSymbol().toUpperCase().includes(filterValue));
+  }
+
+
+  updateStocks() {
+    this.marketService.getStocks().subscribe(stocks => this.stocks = stocks);
   }
 }

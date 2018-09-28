@@ -5,12 +5,26 @@
     <h2>Released Pnl  : {{trader.getReleasedPnL()}}</h2>
     <h2>Total Pnl     : {{trader.getTotalPnL()}}</h2>
   </div>
-  <div class="col-md-4">
-
-  </div>
-  <div class="col-md-4">
-
-  </div>
+  <!--<div class="col-md-4">-->
+    <!--<form>-->
+      <!--<div class="form-group">-->
+        <!--<label>Symbol</label>-->
+        <!--<mat-form-field>-->
+          <!--<input type="text" class="form-control" id="symbol-filter" placeholder="Pick one" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto" >-->
+          <!--<mat-autocomplete #auto="matAutocomplete">-->
+            <!--<mat-option *ngFor="let stock of filteredStocks | async"  [value]="stock.getSymbol()" >-->
+              <!--{{stock.getSymbol()}}-->
+            <!--</mat-option>-->
+          <!--</mat-autocomplete>-->
+        <!--</mat-form-field>-->
+      <!--</div>-->
+      <!--<div class="form-group">-->
+        <!--<label for="count">Count</label>-->
+        <!--<input type="number" class="form-control" id="count">-->
+      <!--</div>-->
+      <!--&lt;!&ndash;<button class="btn btn-success" (click)="buyStock(symbol-filter.value, count.value)" id="buyStockBtn">Buy Stock</button>&ndash;&gt;-->
+    <!--</form>-->
+  <!--</div>-->
   <br><br>
 </div>
 <div class="row">

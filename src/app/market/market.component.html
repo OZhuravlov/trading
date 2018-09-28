@@ -9,24 +9,6 @@
   </div>
   <button class="btn btn-default" (click)="add(symbol.value, company.value); symbol.value=''; company.value=''">Add Stock</button>
 </div>
-<form>
-  <div class="form-group">
-    <label>Symbol</label>
-    <mat-form-field>
-      <input type="text" class="form-control" id="symbol-filter" placeholder="Pick one" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto" >
-      <mat-autocomplete #auto="matAutocomplete">
-        <mat-option *ngFor="let stock of filteredStocks | async"  [value]="stock.getSymbol()" >
-          {{stock.getSymbol()}}
-        </mat-option>
-      </mat-autocomplete>
-    </mat-form-field>
-  </div>
-  <div class="form-group">
-    <label for="count">Count</label>
-    <input type="number" class="form-control" id="count">
-  </div>
-  <button class="btn btn-success" (click)="buyStock(symbol-filter.value, count.value)" id="buyStockBtn">Buy Stock</button>
-</form>
 <br>
 <div class="panel panel-warning" style="max-width: 585px">
   <div class="panel-heading"><h2>Available stocks</h2></div>

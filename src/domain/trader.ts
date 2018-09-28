@@ -7,6 +7,8 @@ export class Trader {
 
   constructor(private name: string, private traderService: TradersService) {
     this.portfolio = [];
+    this.traderService.updateStocks();
+    // console.log(this.traderService.stocks);
     this.addToPortfolio(this.traderService.buyStock('BA', 10));
     this.addToPortfolio(this.traderService.buyStock('CAT', 22));
     this.addToPortfolio(this.traderService.buyStock('KO', 45));
@@ -21,7 +23,7 @@ export class Trader {
   }
 
   getOpenTrades(): Trade[] {
-    // console.log(this.portfolio.filter(trade => trade.isOpen()).length);
+    // console.log(this.portfolio.length);
     return this.portfolio.filter(trade => trade.isOpen());
   }
 

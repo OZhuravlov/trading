@@ -48,7 +48,7 @@ export class Trade {
   }
 
   getReleasedPnL(): number {
-    if (this._isOpen){
+    if (!this.closePrice){
       return 0;
     }
     let tradePnL = (this.getClosePrice() - this.mark ) * this.count;

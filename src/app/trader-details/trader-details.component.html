@@ -1,6 +1,7 @@
 <div class="row">
   <div class="col-md-4">
     <h1>{{trader.getName()}}</h1>
+    <button class="btn btn-primary" (click)="goBack()">Back</button>
     <h2>Unreleased Pnl: {{trader.getUnreleasedPnL()}}</h2>
     <h2>Released Pnl  : {{trader.getReleasedPnL()}}</h2>
     <h2>Total Pnl     : {{trader.getTotalPnL()}}</h2>

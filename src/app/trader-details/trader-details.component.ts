@@ -5,7 +5,10 @@ import {Trade} from '../../domain/trade';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {Stock} from '../../domain/stock';
-import {map, startWith} from 'rxjs/operators';
+import {map, startWith, switchMap} from 'rxjs/operators';
+import {ActivatedRoute, ParamMap} from '@angular/router';
+import 'rxjs/add/operator/switchMap';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-trader-details',
@@ -18,11 +21,14 @@ export class TraderDetailsComponent implements OnInit {
   filteredStocks: Observable<Stock[]>;
   trader: Trader;
 
-  constructor(private tradersService: TradersService) {
+  constructor(private tradersService: TradersService, private route: ActivatedRoute, private location: Location) {
   }
 
-  ngOnInit() {
-    this.tradersService.getTrader('Oleg').subscribe(trader => this.trader = trader);
+  ngOnInit(): void {
+    this.route.paramMap.pipe(
+      switchMap((params: ParamMap) =>
+         this.tradersService.getTrader(params.get('name')))
+    ).subscribe((trader: Trader) => this.trader = trader);
     this.filteredStocks = this.myControl.valueChanges
       .pipe(
         startWith(''),
@@ -36,5 +42,10 @@ export class TraderDetailsComponent implements OnInit {
 
   closeTrade(trade: Trade) {
     this.tradersService.closeTrade(trade);
-}
+  }
+
+  goBack(): void {
+    this.location.back();
+  }
+
 }

@@ -43,14 +43,12 @@ export class TradersService {
 
   buyStock(symbol: string, count: number): Trade {
     let trade: Trade = this.marketService.buyStock(symbol, count);
-    console.log("buyStock" + trade);
     return this.marketService.buyStock(symbol, count);
   }
 
 
   getFilteredStocks(symbol: string): Stock[]{
     const filterValue = symbol.toUpperCase();
-    console.log(filterValue);
     return this.stocks.filter(stock => stock.getSymbol().toUpperCase().includes(filterValue));
   }
 

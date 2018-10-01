@@ -16,7 +16,7 @@ export class TraderDetailsComponent implements OnInit {
 
   myControl = new FormControl();
   filteredStocks: Observable<Stock[]>;
-  private trader: Trader;
+  trader: Trader;
 
   constructor(private tradersService: TradersService) {
   }
@@ -31,7 +31,7 @@ export class TraderDetailsComponent implements OnInit {
   }
 
   buyStock(symbol: string, count: number) {
-    this.tradersService.buyStock(symbol, count)
+    this.trader.addToPortfolio(this.tradersService.buyStock(symbol, count));
   }
 
   closeTrade(trade: Trade) {

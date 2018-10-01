@@ -3,18 +3,20 @@ import {TradersService} from '../app/traders/traders.service';
 
 export class Trader {
 
-  private portfolio: Trade[];
+  portfolio: Trade[];
 
   constructor(private name: string, private traderService: TradersService) {
     this.portfolio = [];
     this.traderService.updateStocks();
-    // console.log(this.traderService.stocks);
-    this.addToPortfolio(this.traderService.buyStock('BA', 10));
-    this.addToPortfolio(this.traderService.buyStock('CAT', 22));
-    this.addToPortfolio(this.traderService.buyStock('KO', 45));
+
+    setTimeout(() => {
+        this.addToPortfolio(this.traderService.buyStock('BA', 10));
+        this.addToPortfolio(this.traderService.buyStock('CAT', 22));
+        this.addToPortfolio(this.traderService.buyStock('KO', 45));
+    }, 1000);
   }
 
-  getPortfolio(){
+  getPortfolio() {
     return this.portfolio;
   }
 
@@ -23,7 +25,6 @@ export class Trader {
   }
 
   getOpenTrades(): Trade[] {
-    // console.log(this.portfolio.length);
     return this.portfolio.filter(trade => trade.isOpen());
   }
 
@@ -37,16 +38,20 @@ export class Trader {
 
   getReleasedPnL(): number {
      let pnl: number = this.portfolio.reduce((a, b) => a + b.getReleasedPnL(), 0);
-     return pnl;
+     return this.getRoundedNumber(pnl);
   }
 
   getUnreleasedPnL(): number {
      let pnl: number = this.portfolio.reduce((a, b) => a + b.getUnreleasedPnL(), 0);
-     return pnl;
+     return this.getRoundedNumber(pnl);
   }
 
   getTotalPnL(): number {
-    return this.getReleasedPnL() + this.getUnreleasedPnL();
+    return this.getRoundedNumber(this.getReleasedPnL() + this.getUnreleasedPnL());
+  }
+
+  private getRoundedNumber(oldValue: number): number {
+    return Math.round(oldValue * 100 + Number.EPSILON) / 100;
   }
 
 }

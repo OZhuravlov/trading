@@ -7,7 +7,6 @@ import {Observable} from 'rxjs';
 import {Stock} from '../../domain/stock';
 import {map, startWith, switchMap} from 'rxjs/operators';
 import {ActivatedRoute, ParamMap} from '@angular/router';
-import 'rxjs/add/operator/switchMap';
 import {Location} from '@angular/common';
 
 @Component({

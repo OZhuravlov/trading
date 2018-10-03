@@ -9,15 +9,17 @@ import { TradersService } from './traders/traders.service';
 import { HttpClientModule } from '@angular/common/http';
 import { TraderDetailsComponent } from './trader-details/trader-details.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatAutocompleteModule, MatFormFieldModule, MatInputModule} from '@angular/material';
+import { MatAutocompleteModule, MatFormFieldModule, MatInputModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { StocksComponent } from './stocks/stocks.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MarketComponent,
     TradersComponent,
-    TraderDetailsComponent
+    TraderDetailsComponent,
+    StocksComponent
   ],
   imports: [
     BrowserModule,

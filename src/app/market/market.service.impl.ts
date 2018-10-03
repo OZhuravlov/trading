@@ -40,8 +40,12 @@ export class MarketServiceImpl implements MarketService {
     return Math.round((currentPrice + (Math.random() * multiplier)) * 100 + Number.EPSILON) / 100;
   }
 
-  getStocks(): Observable<Stock[]> {
+  updateStocks(): Observable<Stock[]> {
     return of(this.stocks);
+  }
+
+  getStocks(): Stock[] {
+    return this.stocks;
   }
 
   addStock(symbol: string, company: string) {

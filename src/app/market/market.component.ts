@@ -19,7 +19,7 @@ export class MarketComponent implements OnInit {
   }
 
   updateStocks() {
-    this.marketService.getStocks().subscribe(stocks => this.stocks = stocks);
+    this.marketService.updateStocks().subscribe(stocks => this.stocks = stocks);
   }
 
   add(symbol: string, company: string) {

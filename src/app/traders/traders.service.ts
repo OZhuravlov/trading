@@ -54,6 +54,6 @@ export class TradersService {
 
 
   updateStocks() {
-    this.marketService.getStocks().subscribe(stocks => this.stocks = stocks);
+    this.marketService.updateStocks().subscribe(stocks => this.stocks = stocks);
   }
 }
